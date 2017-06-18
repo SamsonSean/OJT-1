@@ -9,8 +9,10 @@ if (isset($_SESSION['username'])) {
 	header("location: index.php");
 }
 
+$date = date('Y-m-d');
+$sql = mysqli_query($con,"Select * from students inner join logs on students.idnumber = logs.id_number where logs.date != '$date' ");
+echo $date;
 
-$sql = mysqli_query($con,"Select * from students inner join logs on students.stud_id = logs.stud_id where time_out != '' and remarks != '' ");
 
 if($sql->num_rows > '0'){
 	echo"<table>";
@@ -28,9 +30,9 @@ if($sql->num_rows > '0'){
 
 			";
 	while($rows = mysqli_fetch_assoc($sql)){
-		$idnumber = $rows['id_number'];
-		$lastname = $rows['last_name'];
-		$firstname = $rows['first_name'];
+		$idnumber = $rows['idnumber'];
+		$lastname = $rows['lastname'];
+		$firstname = $rows['firstname'];
 		$timein = $rows['time_in'];
 		$timeout = $rows['time_out'];
 		$remarks = $rows['remarks'];

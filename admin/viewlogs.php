@@ -10,7 +10,7 @@ if (isset($_SESSION['username'])) {
 }
 
  $datenow = date("Y-m-d");
-$sql = mysqli_query($con,"Select * from students inner join logs on students.stud_id = logs.stud_id where date = '$datenow' ");
+$sql = mysqli_query($con,"Select * from students inner join logs on students.idnumber = logs.id_number where date = '$datenow' ");
 
 if($sql->num_rows > '0'){
 	echo"<table>";
@@ -28,9 +28,9 @@ if($sql->num_rows > '0'){
 
 			";
 	while($rows = mysqli_fetch_assoc($sql)){
-		$idnumber = $rows['id_number'];
-		$lastname = $rows['last_name'];
-		$firstname = $rows['first_name'];
+		$idnumber = $rows['idnumber'];
+		$lastname = $rows['lastname'];
+		$firstname = $rows['firstname'];
 		$timein = $rows['time_in'];
 		$timeout = $rows['time_out'];
 		$remarks = $rows['remarks'];
@@ -86,5 +86,6 @@ if($sql->num_rows > '0'){
 <p><a href="adminpage.php" >Home</a></p>
 
 <p><a href="recentlogs.php" >View Recent Logs</a></p>
+<?php echo $datenow?>
 </body>
 </html>
