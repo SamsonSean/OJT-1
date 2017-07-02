@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html>
 <head>
   <title></title>
@@ -5,7 +8,7 @@
 <body>
    <div class="modal-body">
               <form class="form" action="index.php" method="POST" enctype="multipart/form-data" autocomplete="off">
-                <input class="form-control" type="text" placeholder="Username" name="username" required/>
+                <input class="form-control" type="text" placeholder="ID number" name="idnumber" required/>
                 <p class="break"></p>
                 <input class="form-control" type="password" placeholder="Password" name="password" required/>
                 <p class="break"></p>
@@ -13,34 +16,39 @@
                 <p class="break"></p>
                 <input type="submit" value="Login" name="loginadmin" class="btn btn-block btn-primary" />
               </form>
-   </div>
+    </div>
 
 
 </body>
 </html>
 <?php
 require('../connect.php');
-session_start();
-  if(isset($_POST['username'])){
-     $username = mysqli_real_escape_string($con,$_POST['username']);
+if(isset( $_SESSION['idnumber'])){
+  header("location: student.php");
+}else{
+  header("index.php");
+}
+
+  if(isset($_POST['loginadmin'])){
+     $idnumber = mysqli_real_escape_string($con,$_POST['idnumber']);
      $userpass = mysqli_real_escape_string($con,$_POST['password']);
 
 
- $checkUsername = mysqli_query($con,"SELECT * from admin WHERE username = '$username' ");
- $result = $checkUsername->fetch_assoc();
+ $checkID = mysqli_query($con,"SELECT * from students WHERE idnumber = '$idnumber' ");
+ $result = $checkID->fetch_assoc();
  $password = $result['password'];
 
- if($checkUsername->num_rows < '1'){
-    // $_SESSION['message'] = "The account $username does not exist!.";
+ if($checkID->num_rows < '1'){
+    $_SESSION['message'] = "The account $idnumber does not exist!.";
     // header("location: error.php");
-     echo"invalid username";
+     echo"invalid ID number";
 
    }else if($password == $userpass){
-      $_SESSION['username'] = $username;
-       header("location: adminpage.php");
+      $_SESSION['idnumber'] = $idnumber;
+       header("location: student.php");
 
   }else{
-    // $_SESSION['message'] = "Invalid password!.";
+    $_SESSION['message'] = "Invalid password!.";
     // header("location: error.php");
     echo"invalid pass";
   } 

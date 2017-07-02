@@ -1,3 +1,11 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<p><a href="adminpage.php" >Home</a></p>
+<p><a href="recentlogs.php" >View Recent Logs</a></p>
 <?php
 require("../connect.php");
 session_start();
@@ -9,10 +17,16 @@ if (isset($_SESSION['username'])) {
 	header("location: index.php");
 }
 
- $datenow = date("Y-m-d");
-$sql = mysqli_query($con,"Select * from students inner join logs on students.idnumber = logs.id_number where date = '$datenow' ");
+date_default_timezone_set("Asia/Manila");
+$date = date('Y-m-d');
+$time = date('h:i:a');
 
-if($sql->num_rows > '0'){
+$sql = mysqli_query($con,"Select * from students inner join logs on students.idnumber = logs.id_number where date = '$date' ");
+echo "<br>";
+echo "The date is ".$date;
+echo "<br>";
+echo "The time is ".$time;
+if($sql->num_rows > "0"){
 	echo"<table>";
 		echo"<tr>";
 
@@ -74,18 +88,11 @@ if($sql->num_rows > '0'){
 
 
 
+mysqli_close($con);
 
 
 ?>
 
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-<p><a href="adminpage.php" >Home</a></p>
 
-<p><a href="recentlogs.php" >View Recent Logs</a></p>
-<?php echo $datenow?>
 </body>
 </html>

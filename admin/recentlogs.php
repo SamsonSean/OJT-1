@@ -1,3 +1,11 @@
+
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<p><a href="adminpage.php" >Home</a></p>
+<p><a href="viewlogs.php" >View Logs Today</a></p>
 <?php
 require("../connect.php");
 session_start();
@@ -8,10 +16,14 @@ if (isset($_SESSION['username'])) {
 }else{
 	header("location: index.php");
 }
-
+date_default_timezone_set("Asia/Manila");
 $date = date('Y-m-d');
+$time = date('h:i:a');
 $sql = mysqli_query($con,"Select * from students inner join logs on students.idnumber = logs.id_number where logs.date != '$date' ");
-echo $date;
+echo "<br>";
+echo "The date is ".$date;
+echo "<br>";
+echo "The time is ".$time;
 
 
 if($sql->num_rows > '0'){
@@ -75,18 +87,10 @@ if($sql->num_rows > '0'){
 
 
 
-
+mysqli_close($con);
 
 
 ?>
 
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-<p><a href="adminpage.php" >Home</a></p>
-
-<p><a href="viewlogs.php" >View Logs Today</a></p>
 </body>
 </html>
