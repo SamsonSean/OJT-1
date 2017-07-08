@@ -32,7 +32,7 @@ function log_student(r){
 
                     var temp = [{status:status}];
                     ajaxRequest.send(JSON.stringify(temp));
-                    location.reload();
+                     location.reload();
 
 }
 

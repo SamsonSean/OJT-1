@@ -5,14 +5,18 @@ session_start();
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
+	<link rel="stylesheet" type="text/css" href="../style/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../style/bootsrap-grid.css">
+  <link rel="stylesheet" type="text/css" href="../style/botstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../style/popup.css">
 	<script src="log.js"></script>
-	<!-- <link rel="stylesheet" type="text/css" href="../style/popup.css"> -->
+
 	<title>Student</title>
 </head>
 <body>
-<p><a href="../logout.php">Logout</a></p>
+<p><a href="logout.php">Logout</a></p>
 
-<button  id='timein' value='timein' class='btn btn-sm btn-success' type='button' onclick='log_student(this)'>Time in</button>
+
 <?php
 
 if (isset($_SESSION['idnumber'])) {
@@ -23,11 +27,12 @@ if (isset($_SESSION['idnumber'])) {
 	header("location: index.php");
 }
 
-
-
 $logs = mysqli_query($con,"SELECT * from logs where id_number =  $_SESSION[idnumber]");
 
-if($logs->num_rows > '0'){
+	
+echo"<button  id='timein' value='timein' class='btn btn-sm btn-success' type='button' onclick='log_student(this)'>Time in</button>";
+
+ if($logs->num_rows > '0'){
 	echo"<table>";
 		echo"<tr>";
 
@@ -37,8 +42,8 @@ if($logs->num_rows > '0'){
 				<th>time out</th>
 				<th>remarks</th>
 				<th>date</th>
-				<th>Action</th>
-				<th>Remakrs</th>
+				<th> Action</th>
+				<th> Remarks</th>
 				</tr>	
 
 			";
@@ -60,17 +65,44 @@ if($logs->num_rows > '0'){
 					        		<td>$remarks</td>
 					        		<td>$date</td>
 					        		<td>
-					        		<form action='log.php' method='POST'>
+					        		";
+					        		if(isset($timeout)){
+					        			echo" ";
+					        		}else{
+
+					        	
+					        	echo"<form action='log.php' method='POST'>
 					        		 <button  name='timeout' id='timeout' value='$logid'  onclick='log_student(this)'>Time out</button>
 					        		</form>
 					        		</td>
+					        		";
+					        			}
+					        	echo"	
 					        		<td>					        		
-									<a class='button' href='#popup1'>Remarks</a>	      
+									<a href=#$logid >Remarks</a>	      
 					        		</td>
-					        	</tr>";
+					        	";
+					        	echo"
+					       			 <td>		
+							<div id=$logid class='overlay'>
+								<div class='popup'>
+									<h2>Remarks</h2>
+									<a class='close' href='#'>&times;</a>
+									<form action='remarks.php' method='POST'>
+									<textarea id='remarks' name='remarks' required></textarea>
+					    			<button type='submit'  name='submit' value='$logid' id='submit' >Done</button>
+									</form>
+								</div>	
+							</div>
+									</td>	
+
+						</tr>
+			";	
 
 			}
-			echo"</table>";		
+			echo"</table>";
+
+			
 }
 else{
 	echo"<table>";
@@ -82,14 +114,13 @@ else{
 				<th>time out</th>
 				<th>remarks</th>
 				<th>date</th>
-				<th> Action</th>
+				<th>Action</th>
 				<th>Remarks</th>
 				</tr>	
-
-			";
+				";
 }
-
 ?>
 
+</div>
 </body>
 </html>

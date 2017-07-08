@@ -1,6 +1,8 @@
 <?php
 require("../connect.php");
 session_start();
+if(isset($_SESSION['idnumber'])){
+
 
 $info = file_get_contents("php://input");
 $json_decoded = json_decode($info,true);
@@ -11,32 +13,35 @@ date_default_timezone_set("Asia/Manila");
 $date = date('Y-m-d');
 $time = date('h:i');
 
-
 if($status == 'timein'){
 $timein = mysqli_query($con,"INSERT INTO logs (time_in, date,id_number)
 VALUES ( '$time', '$date', $_SESSION[idnumber])");
 if($timein){
-	header("location: student.php");
+	echo "Success";
 	
 }else{
-	echo"moto";
-	echo $_SESSION['idnumber'];
+	echo "failed";
 }
 
-}elseif($status = 'timeout'){
-     
-	 $timeout = mysqli_query($con,"UPDATE logs  SET time_out = '$time' where id_number =  $_SESSION[idnumber] and log_id = $_POST[timeout] ");
+}elseif($status = 'timeout') {
+    	
+	    $timeout = mysqli_query($con,"UPDATE logs  SET time_out = '$time' where id_number =  $_SESSION[idnumber] and log_id =  $_POST[timeout]");
+ 
 	 if($timeout){
-	 	
-	 	echo "Succesfully timed out"; 	
+	 	header("location: student.php");
 
 	 }else{
-	 	echo"error";
-	 }	
+	 	echo "fail";
+	 }
+
+  
     
-}else{
-	$remarks = mysqli_query($con,"UPDATE logs SET remarks = $_POST[remarks]");
 }
-header("location: student.php");
-// mysqli_close($con);
+	
+
+
+}else{
+	header("location: index.php");
+}
+
 ?>

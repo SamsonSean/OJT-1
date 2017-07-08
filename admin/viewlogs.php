@@ -2,6 +2,11 @@
 <html>
 <head>
 	<title></title>
+
+	<link rel="stylesheet" type="text/css" href="../style/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../style/bootsrap-grid.css">
+  <link rel="stylesheet" type="text/css" href="../style/botstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../style/popup.css">
 </head>
 <body>
 <p><a href="adminpage.php" >Home</a></p>
@@ -27,7 +32,7 @@ echo "The date is ".$date;
 echo "<br>";
 echo "The time is ".$time;
 if($sql->num_rows > "0"){
-	echo"<table>";
+	echo"<table class='table table-hover'>";
 		echo"<tr>";
 
 			echo"
@@ -68,7 +73,7 @@ if($sql->num_rows > "0"){
 }else{
 
 
-	echo"<table>";
+	echo"<table class='table table-hover'>";
 		echo"<tr>";
 
 			echo"

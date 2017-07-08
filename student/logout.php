@@ -12,7 +12,7 @@
   <link rel="stylesheet" type="text/css" href="../style/popup.css">
   <meta charset="UTF-8">
   <title>Logout</title>
-
+	 
 </head>
 
 <body>
@@ -25,8 +25,9 @@
           <p>You have successfully logged out</p>
         
           <a href="index.php"><button class="btn btn-primary">HOME</button></a>
-        
-       		 </div>
+          
+      
+   		 </div>
    	  </div>
    </div>
 
@@ -35,7 +36,7 @@
     <?php
 		session_unset();
 		session_destroy(); 
-    
+
     ?>
 
 </body>

@@ -4,13 +4,22 @@ session_start();
 
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../style/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../style/bootsrap-grid.css">
+  <link rel="stylesheet" type="text/css" href="../style/botstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../style/popup.css">
+  <script src="search.js"></script>
 	<title></title>
 </head>
 <body>
-<p><a href="../logout.php" >Logout</a></p>
+  <div class="pull-left"><a href="logout.php" >Logout</a></div>
+
 <p><a href="viewlogs.php" >ViewLogs</a></p>
 
-<h2>Add Student</h2>
+
+
  <form class="form" action="addstudent.php" method="POST" enctype="multipart/form-data" autocomplete="off">
  				  <label>ID number: </label>
                 <input class="form-control" type="text" placeholder="idnumber" name="idnumber" required/>
@@ -36,8 +45,9 @@ session_start();
                   <label>Password: </label>
                 <input class="form-control" type="password" placeholder="Password" name="password" required/>
                 <p class="break"></p>
+                  <div class="form-group">
                   <label>Select Adviser: </label>
-               	<select name="adviser">
+               	<select name="adviser"  class="form-control">
                		<option>--SELECT--</option>
                		<?php
                		require("../connect.php");
@@ -50,6 +60,7 @@ session_start();
                			}
                		?>
                	</select>
+               </div>
                 <p class="break"></p>
                 <input type="submit" value="Add Student" name="addstudent" class="btn btn-block btn-primary" />
                
@@ -84,7 +95,6 @@ session_start();
                ?>
 </form>
 
-
 <?php
 require("../connect.php");
 
@@ -95,12 +105,24 @@ if (isset($_SESSION['username'])) {
 }else{
 	header("location: index.php");
 }
-
-
+?>
+Filter By:
+<select id='value' onchange='search()'>
+  <option value=''>-SELECT-</option>
+  <option value="0">ID number</option>
+  <option value="1">Name</option>
+  <option value="2">Course</option>
+  <option value="3">Year</option>
+  <option value="6">Adviser</option>
+</select>
+<input type="text" id="filter" onkeyup="search()" 
+placeholder="Search for names.." title="Type in a name">
+<?php
 $sql = mysqli_query($con,"SELECT * from students ");
-
+echo"<br>";
+Echo "<h3>List of Students</h3>";
 if($sql->num_rows > '0'){
-	echo"<table>";
+	echo"<table id='table' class='table table-hover'>";
 		echo"<tr>";
 
 			echo"

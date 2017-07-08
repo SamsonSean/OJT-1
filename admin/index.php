@@ -1,5 +1,9 @@
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="../style/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../style/bootsrap-grid.css">
+  <link rel="stylesheet" type="text/css" href="../style/botstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../style/popup.css">
   <title></title>
 </head>
 <body>

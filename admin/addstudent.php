@@ -21,7 +21,6 @@ if(isset($_POST['addstudent'])){
 
 if($sqlcheck->num_rows > "0"){
 	$_SESSION['MESS'] = "student $idnumber already in the database";
-	header("location: adminpage.php");
 }
 else{
 	$insert = "INSERT into `students` (idnumber, lastname, firstname, course, year, password, time_schedule, day_schedule, adviser_id) 

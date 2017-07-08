@@ -6,10 +6,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="../style/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../style/bootsrap-grid.css">
+  <link rel="stylesheet" type="text/css" href="../style/botstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../style/popup.css">
   <meta charset="UTF-8">
   <title>Logout</title>
-	  <link rel="stylesheet" href="public/css/bootsrap.css">
-	  <link rel="stylesheet" href="public/css/form.css">
 
 </head>
 
@@ -21,15 +23,10 @@
           <h1>Thank You!</h1>
               
           <p>You have successfully logged out</p>
-          <?php
-            if(isset($_POST['zero'])){
-              $path = $_POST['zero']
-           
-          ?>
-          <a href="<?php echo $path; ?>/index.php"><button class="btn btn-primary">HOME</button></a>
-          <?php 
-        }?>
-   		 </div>
+        
+          <a href="index.php"><button class="btn btn-primary">HOME</button></a>
+        
+       		 </div>
    	  </div>
    </div>
 
@@ -38,7 +35,7 @@
     <?php
 		session_unset();
 		session_destroy(); 
-
+    
     ?>
 
 </body>
