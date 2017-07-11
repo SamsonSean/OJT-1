@@ -20,7 +20,7 @@ $time = date('h:i:a');
 	<a href='studentlogs.php'>Log today</a>
 <?php
 $logs = mysqli_query($con,"SELECT * FROM `students` inner join logs on students.idnumber = logs.id_number
-							 where adviser_id = $id[2] and date != '$date' ");
+							 where adviser_id = $id[2] and date != '$date' order by logs.date ");
 
 if($logs->num_rows > '0'){
 	echo"<table id='table' class='table table-hover'>";

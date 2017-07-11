@@ -1,4 +1,5 @@
 <?php
+require("../connect.php");
 session_start();
 ?>
 
@@ -10,7 +11,7 @@ session_start();
   <link rel="stylesheet" type="text/css" href="../style/bootsrap-grid.css">
   <link rel="stylesheet" type="text/css" href="../style/botstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../style/popup.css">
-  <script src="search.js"></script>
+  <script src="../js/search.js"></script>
 	<title></title>
 </head>
 <body>
@@ -96,7 +97,7 @@ session_start();
 </form>
 
 <?php
-require("../connect.php");
+
 
 if (isset($_SESSION['username'])) {
 	
@@ -115,14 +116,28 @@ Filter By:
   <option value="3">Year</option>
   <option value="6">Adviser</option>
 </select>
-<input type="text" id="filter" onkeyup="search()" 
-placeholder="Search for names.." title="Type in a name">
+<input type="text" id="filter"  onkeyup="search()" 
+placeholder="Search.." title="Type in a name">
+
 <?php
 $sql = mysqli_query($con,"SELECT * from students ");
-echo"<br>";
 Echo "<h3>List of Students</h3>";
+
+
+echo "<a href=#delete  class='btn btn-sm btn-danger'role='button' >Delete All Students</a>";
+              echo" <div id=delete class='overlay'>
+                <div class='popup'>             
+                  <a class='close' href='#'>&times;</a>
+                  <form action='delete.php' method='POST'>
+                  <br>
+                  <p> Are you sure you want to delete all student?</p>
+                  <button class='btn btn-sm btn-danger' style='align:center;' type='delete'  name='delete' value='delete' id='delete' >Ok</button>
+                  </form>
+                </div>  
+              </div>";
+
 if($sql->num_rows > '0'){
-	echo"<table id='table' class='table table-hover'>";
+	echo"<table id='table' class='table table-hover '>";
 		echo"<tr>";
 
 			echo"
@@ -133,7 +148,7 @@ if($sql->num_rows > '0'){
         <th>Time Schedule</th>
 				<th>Schedule</th>
 				<th>Adviser</th>
-
+        <th>Action</th>
 				</tr>	
 
 			";
@@ -165,6 +180,11 @@ if($sql->num_rows > '0'){
                       <td>$time</td>
 					        		<td> $schedule</td>
 					        		<td> $adviserlname, $adviserfname</td>
+                      <td>
+                      <form action='delete.php' method='POST'>
+                       <button class='btn btn-sm btn-danger'  name='delete' id='delete' value='$idnumber' >Delete</button>
+                      </form>
+                      </td>
 					        	</tr>";
 
 	}
@@ -172,7 +192,7 @@ if($sql->num_rows > '0'){
 }else{
 
 
-		echo"<table>";
+		echo"<table class='table table-hover'>";
 		echo"<tr>";
 
 			echo"
@@ -188,6 +208,10 @@ if($sql->num_rows > '0'){
 
 			";
 
+}
+if(isset($_SESSION['delmess'])){
+echo $_SESSION['delmess'];
+unset($_SESSION['delmess']);  
 }
 
 

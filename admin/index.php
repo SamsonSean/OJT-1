@@ -7,6 +7,8 @@
   <title></title>
 </head>
 <body>
+  <div class="loginpage">
+  <h1 class="loginhead">Log in</h1>
    <div class="modal-body">
               <form class="form" action="index.php" method="POST" enctype="multipart/form-data" autocomplete="off">
                 <input class="form-control" type="text" placeholder="Username" name="username" required/>
@@ -18,14 +20,18 @@
                 <input type="submit" value="Login" name="loginadmin" class="btn btn-block btn-primary" />
               </form>
    </div>
-
+ </div>
 
 </body>
 </html>
 <?php
 require('../connect.php');
 session_start();
-  if(isset($_POST['username'])){
+
+  if(isset($_SESSION['username'])){
+    header("location: adminpage.php");
+  }else{
+     if(isset($_POST['username'])){
      $username = mysqli_real_escape_string($con,$_POST['username']);
      $userpass = mysqli_real_escape_string($con,$_POST['password']);
 
@@ -52,6 +58,9 @@ session_start();
   }
  
 mysqli_close($con);
+
+  }
+ 
   
 
 

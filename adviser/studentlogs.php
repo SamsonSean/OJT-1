@@ -21,7 +21,7 @@ $time = date('h:i:a');
 <?php
 
 $logs = mysqli_query($con,"SELECT * FROM `students` inner join logs on students.idnumber = logs.id_number
-							 where adviser_id = $id[2] and date = '$date' ");
+							 where adviser_id = $id[2] and date = '$date' order by logs.date ");
 
 if($logs->num_rows > '0'){
 	echo"<table id='table' class='table table-hover'>";
@@ -32,6 +32,7 @@ if($logs->num_rows > '0'){
 				<th>Name</th>
 				<th>Time in</th>
 				<th>Time out</th>
+				<th>hrs rendered</th>
         		<th>Remarks </th>
 				<th>Date</th>		
 				</tr>	
@@ -46,12 +47,14 @@ if($logs->num_rows > '0'){
 				$timeout = $result['time_out'];
 				$remarks = $result['remarks'];
 				$date = $result['date'];
+				$hrs = $result['hrs_rendered'];
 
 					echo "<tr>
 					          <td>$idnumber</td>
 					          <td>$lastname, $firstname</td>	
 					          <td>$timein</td>
 					          <td>$timeout</td>
+					          <td>$hrs</td>
                     		  <td>$remarks</td>
 					          <td>$date</td>
 					          </tr>";

@@ -16,12 +16,13 @@ $result = mysqli_fetch_assoc($query);
 
 if(is_null($result['time_out'])){
 
-echo "you need to log out first";
-
+ $_SESSION['remarkmess'] = "<script>alert('You need to log out first');</script>";
+header("location: student.php");
 }else{
 	$remarks = mysqli_query($con,"UPDATE logs SET remarks = '$remarks' where id_number =  $_SESSION[idnumber] and log_id = $id");
 
 	if($remarks){
+		unset($_SESSION['remarkmess']);
 		header("location: student.php");
 	}else{
 		echo 'failed';

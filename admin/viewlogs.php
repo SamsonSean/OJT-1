@@ -26,7 +26,7 @@ date_default_timezone_set("Asia/Manila");
 $date = date('Y-m-d');
 $time = date('h:i:a');
 
-$sql = mysqli_query($con,"Select * from students inner join logs on students.idnumber = logs.id_number where date = '$date' ");
+$sql = mysqli_query($con,"Select * from students inner join logs on students.idnumber = logs.id_number where date = '$date' order by logs.date ");
 echo "<br>";
 echo "The date is ".$date;
 echo "<br>";
@@ -40,6 +40,7 @@ if($sql->num_rows > "0"){
 				<th>Name</th>
 				<th>time in</th>
 				<th>time out</th>
+				<th>hrs rendered</th>
 				<th>remarks</th>
 				<th>date</th>
 
@@ -54,7 +55,7 @@ if($sql->num_rows > "0"){
 		$timeout = $rows['time_out'];
 		$remarks = $rows['remarks'];
 		$date = $rows['date'];
-
+		$hrs = $rows['hrs_rendered'];
 		$row = $sql->num_rows;
 
 
@@ -63,6 +64,7 @@ if($sql->num_rows > "0"){
 					        		<td>$lastname, $firstname</td>	
 					        		<td>$timein</td>
 					        		<td>$timeout</td>
+					        		<td>$hrs</td>
 					        		<td>$remarks</td>
 					        		<td>$date</td>
 					        	
@@ -81,6 +83,7 @@ if($sql->num_rows > "0"){
 				<th>Name</th>
 				<th>time in</th>
 				<th>time out</th>
+				<th>hrs rendered</th>
 				<th>remarks</th>
 				<th>date</th>
 
