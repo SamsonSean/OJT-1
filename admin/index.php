@@ -6,9 +6,9 @@
   <link rel="stylesheet" type="text/css" href="../style/popup.css">
   <title></title>
 </head>
-<body>
-  <div class="loginpage">
-  <h1 class="loginhead">Log in</h1>
+<body class="offset-4 mt-5" style="margin-right: 33.333333%">
+  <div style="display:block; background-color:#e6f0bb;border-radius:50px;border:5px solid #405e01;">
+  <h1 style="font-family: Sans-serif;font-size:5em;color:#405e01;">Log in</h1>
    <div class="modal-body">
               <form class="form" action="index.php" method="POST" enctype="multipart/form-data" autocomplete="off">
                 <input class="form-control" type="text" placeholder="Username" name="username" required/>

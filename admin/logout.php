@@ -17,17 +17,12 @@
 
 <body>
 
-   <div class="body-content">
- 	  <div class="body-content-module">
-  		<div class="logout_module">
-          <h1>Thank You!</h1>
-              
-          <p>You have successfully logged out</p>
-        
-          <a href="index.php"><button class="btn btn-primary">HOME</button></a>
-        
-       		 </div>
-   	  </div>
+   <div class="offset-2 mt-5" style="margin-right: 16.666667%">
+       <div style="display:block; background-color:#e6f0bb;border-radius:50px;border:5px solid #405e01;padding-bottom:50px;">
+        <h1 style="font-family: Sans-serif;font-size:5em;color:#405e01;">Thank You!</h1>    
+        <h2 style="font-family: Sans-serif;font-size:2em;color:#405e01;text-align:center;">You have successfully logged out</h2>
+        <a href="index.php"><button class="btn btn-primary" style="margin-left:48%;margin-right:50%">HOME</button></a>
+       </div>
    </div>
 
 
