@@ -26,7 +26,7 @@
     </div>
 </nav>
 </div>
-  <div id="me" class="offset-4 mt-5" style="display:block; background-color:#e6f0bb;border-radius:50px;border:5px solid #405e01;height:55%;margin-right: 33.333333%">
+  <div id="me" class="offset-4 mt-5" style="display:block; background-color:#e6f0bb;border-radius:50px;border:5px solid #405e01;height:55%;margin-right: 33.333333%;">
   <img src="../images/scis.png" style='width:200px;height:200px;float:left;padding:0;margin:0;'><h1 style="font-family: Sans-serif;font-size:5em;color:#405e01;">Log in</h1>
    <div class="modal-body">
               <form class="form" action="index.php" method="POST" enctype="multipart/form-data" autocomplete="off">

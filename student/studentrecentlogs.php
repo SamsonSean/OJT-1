@@ -17,15 +17,28 @@ $time = date('h:i:a');
 	<title>Student</title>
 </head>
 <body>
-<p><a href="logout.php">Logout</a></p>
-<p><a href="student.php">Logs today</a></p>
+<nav class='navbar navbar-dark bg-primary navbar-toggleable-md'>
+<a class="navbar-brand" style="color:white;">OJT 2017</a>
+    <div class='collapse navbar-collapse'>
+        <ul class='navbar-nav mr-auto'>
+            <li class='nav-item'>
+                <a href="studentrecentlogs.php" style="color:white;">Recent Logs</a>
+            </li>
+            <li>
+                <a class='btn btn-sm btn-danger' href="logout.php" style="color:white;position:absolute;margin-left:85%;">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
 
 <?php
 
 if (isset($_SESSION['idnumber'])) {
-	
-	  echo"<h1>Hi!  $_SESSION[idnumber] </h1> ";
+	  echo "<div class='mt-5' style='display:block; background-color:white;border-top:5px solid #0275d8;border-bottom:5px solid #0275d8;'>";
+	  echo"<h1 style='color:#0275d8;'>Hi!  $_SESSION[idnumber] </h1> ";
+      echo"<h3 style='color:#0275d8;text-align:center;margin-bottom:20px;'>Here you can view your latest time in logs.</h3> ";
+      echo "</div>";
 	
 }else{
 	header("location: index.php");

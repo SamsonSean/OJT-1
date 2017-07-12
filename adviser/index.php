@@ -72,7 +72,7 @@ session_start();
  if($checkUsername->num_rows < '1'){
     // $_SESSION['message'] = "The account $username does not exist!.";
     // header("location: error.php");
-     echo"<script>window.alert('Invalid ID number')</script>";
+     echo"<script>window.alert('Invalid Username')</script>";
 
    }else if($password == $userpass){
       $_SESSION['instructor'] = "$result[lastname], $result[firstname], $username";

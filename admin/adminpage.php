@@ -15,9 +15,19 @@ session_start();
 	<title></title>
 </head>
 <body>
-  <div class="pull-left"><a href="logout.php" >Logout</a></div>
-
-<p><a href="viewlogs.php" >ViewLogs</a></p>
+<nav class='navbar navbar-dark bg-primary navbar-toggleable-md'>
+<a class="navbar-brand" style="color:white;">OJT 2017</a>
+    <div class='collapse navbar-collapse'>
+        <ul class='navbar-nav mr-auto'>
+            <li class='nav-item'>
+                <a href="viewlogs.php" style="color:white;">ViewLogs</a>
+            </li>
+            <li>
+                <a class='btn btn-sm btn-danger' href="logout.php" style="color:white;position:absolute;margin-left:85%;">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
 <div class="offset-4 mt-5" style="margin-right: 33.333333%">
 <button id='addstudent' class='btn btn-block btn-primary mt-3' onclick="hidestudentform()">Add Student</button>
@@ -104,15 +114,18 @@ session_start();
 
 
 if (isset($_SESSION['username'])) {
-	
-	  echo"<h1>Hi!  $_SESSION[username] </h1> ";
-	
+	  echo "<div class='mt-5' style='display:block; background-color:white;border-top:5px solid #0275d8;border-bottom:5px solid #0275d8;margin-bottom:80px;'>";
+	  echo"<h1 style='color:#0275d8;'>Welcome!  $_SESSION[username] </h1> ";
+	  echo"<h3 style='color:#0275d8;text-align:center;margin-bottom:20px;'>Please choose what you would like to do.</h3> ";
+      echo "</div>";
 }else{
 	header("location: index.php");
 }
 ?>
-Filter By:
-<select id='value' onchange='search()'>
+
+<div class='mt-5' style='display:block; background-color:white;border-bottom:5px solid #0275d8;border-top:5px solid #0275d8;margin:50px 0px 50px 0px;text-align:center;padding:50px 0px 50px 0px;'>
+<h2 style='color:#0275d8;'>Filter By:</h2>
+<select id='value' onchange='search()' style='width:300px;height:40px;'>
   <option value=''>-SELECT-</option>
   <option value="0">ID number</option>
   <option value="1">Name</option>
@@ -121,14 +134,14 @@ Filter By:
   <option value="6">Adviser</option>
 </select>
 <input type="text" id="filter"  onkeyup="search()" 
-placeholder="Search.." title="Type in a name">
-
+placeholder="Search.." title="Type in a name" style='width:300px;height:40px;'>
+</div>
 <?php
 $sql = mysqli_query($con,"SELECT * from students ");
-Echo "<h3>List of Students</h3>";
+Echo "<h3 style='color:#0275d8;text-align:center;'>List of Students</h3>";
 
 
-echo "<a href=#delete  class='btn btn-sm btn-danger'role='button' >Delete All Students</a>";
+echo "<a href=#delete  class='btn btn-sm btn-danger'role='button' style='float:none;margin:1% 0% 1% 85%;'>Delete All Students</a>";
               echo" <div id=delete class='overlay'>
                 <div class='popup'>             
                   <a class='close' href='#'>&times;</a>
