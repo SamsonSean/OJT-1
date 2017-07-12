@@ -19,8 +19,9 @@ session_start();
 
 <p><a href="viewlogs.php" >ViewLogs</a></p>
 
-
-
+<div class="offset-4 mt-5" style="margin-right: 33.333333%">
+<button id='addstudent' class='btn btn-block btn-primary mt-3' onclick="hidestudentform()">Add Student</button>
+<div id="studentform" style="display:none;">
  <form class="form" action="addstudent.php" method="POST" enctype="multipart/form-data" autocomplete="off">
  				  <label>ID number: </label>
                 <input class="form-control" type="text" placeholder="idnumber" name="idnumber" required/>
@@ -75,8 +76,10 @@ session_start();
               
 
 </form>
+</div>
 
-<h2>Add Instructor </h2>
+<button id='addinstructor' class='btn btn-block btn-primary mt-3' onclick="hideinstructorform()">Add Instructor</button>
+<div id="instructorform" style="display:none;">
 <form class="form" action="addInstructor.php" method="POST" enctype="multipart/form-data" autocomplete="off">
                 <input class="form-control" type="text" placeholder="Instructor ID" name="insID" required/>
                 <p class="break"></p>
@@ -95,7 +98,8 @@ session_start();
               
                ?>
 </form>
-
+</div>
+</div>
 <?php
 
 
@@ -220,5 +224,35 @@ unset($_SESSION['delmess']);
 mysqli_close($con);
 
 ?>
+    
+<script>
+function hidestudentform() {
+
+var z = document.getElementById('studentform');
+var y = document.getElementById('addstudent');
+if (z.style.display === 'block') {
+    z.style.display = 'none';
+    y.style.display = 'block';
+} else {
+    z.style.display = 'block';
+    y.style.display = 'none';
+}
+
+}    
+    
+function hideinstructorform() {
+
+var z = document.getElementById('instructorform');
+var y = document.getElementById('addinstructor');
+if (z.style.display === 'block') {
+    z.style.display = 'none';
+    y.style.display = 'block';
+} else {
+    z.style.display = 'block';
+    y.style.display = 'none';
+}
+
+} 
+</script>
 </body>
 </html>

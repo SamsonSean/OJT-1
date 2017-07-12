@@ -143,6 +143,6 @@ else{
 }
 ?>
 
-</div>
+
 </body>
 </html>
