@@ -33,8 +33,12 @@ if (isset($_SESSION['idnumber'])) {
 
 $logs = mysqli_query($con,"SELECT * from logs where id_number =  $_SESSION[idnumber] and date = '$date'");
 
-	
-echo"<button  id='timein' value='timein' class='btn btn-sm btn-success' type='button' onclick='log_student(this)'>Time in</button>";
+if(isset($_SESSION['button'])){
+	echo $_SESSION['button'];
+}else{
+	echo "";
+}	
+
 if(isset($_SESSION['remarkmess'])){
 	echo"$_SESSION[remarkmess]";
 	unset($_SESSION['remarkmess']);
@@ -81,6 +85,7 @@ if(isset($_SESSION['remarkmess'])){
 					        		";
 					        		if(isset($timeout)){
 					        			echo" ";
+
 					        		}else{
 
 					        	
@@ -120,6 +125,7 @@ if(isset($_SESSION['remarkmess'])){
 			
 }
 else{
+	$_SESSION['button'] = "<button  id='timein' value='timein' class='btn btn-sm btn-success' type='button' onclick='log_student(this)'>Time in</button>";
 	echo"<table class='table'>";
 		echo"<tr>";
 

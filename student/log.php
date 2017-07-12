@@ -17,7 +17,7 @@ if($status == 'timein'){
 $timein = mysqli_query($con,"INSERT INTO logs (time_in, date,id_number)
 VALUES ( '$time', '$date', $_SESSION[idnumber])");
 if($timein){
-	echo "Success";
+	unset($_SESSION['button']);
 	
 }else{
 	echo "failed";
@@ -32,6 +32,7 @@ if($timein){
     	}
  
 	 if($timeout){
+	 	$_SESSION['button'] = "<button  id='timein' value='timein' class='btn btn-sm btn-success' type='button' onclick='log_student(this)'>Time in</button>";
 	 	$totaltime = mysqli_query($con,"SELECT * from logs where  $_SESSION[idnumber] and log_id = $_POST[timeout]");
 	 	$result = mysqli_fetch_assoc($totaltime);
 	 	if($result['time_out'] < '12' && $result['time_in'] < '12'){
