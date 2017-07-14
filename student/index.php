@@ -11,7 +11,7 @@ session_start();
 </head>
 <body>
 <!--Navbar-->
-<div class="container" style="width:100%;">
+
 <nav class='navbar navbar-dark bg-primary navbar-toggleable-md'>
 <a class="navbar-brand" href="#me3" style="color:white;">OJT</a>
     <div class='collapse navbar-collapse'>
@@ -28,7 +28,7 @@ session_start();
         </ul>
     </div>
 </nav>
-</div>
+
     <div id='me3' class="offset-4 mt-5" style="display:block; background-color:#2c3756;border-radius:50px;border:5px solid #a6a4aa;height:55%;margin-right: 33.333333%;">
     <img src="../images/scis.png" style='width:200px;height:200px;float:left;padding:0;margin:0;'><h1 style="font-family: Sans-serif;font-size:5em;color:#a6a4aa;">Log in</h1>
         <div class="modal-body">
@@ -49,9 +49,9 @@ session_start();
 <div class="container">
 <div class="row">
 	<div class="col-md-12 text-center">
-		<p>
+		<footer>
 			&copy; OJT Short Term 2017 
-		</p>
+		</footer>
 	</div>
 </div>
 </div>
@@ -78,17 +78,15 @@ if(isset( $_SESSION['idnumber'])){
  $password = $result['password'];
 
  if($checkID->num_rows < '1'){
-    $_SESSION['message'] = "The account $idnumber does not exist!.";
-    // header("location: error.php");
-     echo"<script>window.alert('Invalid Password')</script>;";
+
+     echo"<script>window.alert('The account $idnumber does not exist!.')</script>;";
 
    }else if($password == $userpass){
       $_SESSION['idnumber'] = $idnumber;
        header("location: student.php");
 
   }else{
-    $_SESSION['message'] = "Invalid password!.";
-    // header("location: error.php");
+
     echo"<script>window.alert('Invalid Password')</script>";
   } 
 

@@ -6,7 +6,7 @@ if(!isset($_SESSION['idnumber'])){
 }else{
 	
 
-$remarks = mysqli_real_escape_string($con,$_POST['remarks']);
+$remarks = mysqli_real_escape_string($con,htmlentities($_POST['remarks']));
 $id = $_POST['submit'];
 
 $query = mysqli_query($con,"SELECT * from logs where id_number = $_SESSION[idnumber] and log_id = $id");

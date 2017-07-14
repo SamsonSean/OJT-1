@@ -8,7 +8,7 @@
 </head>
 <body>
 <!--Navbar-->
-<div class="container" style="width:100%;">
+
 <nav class='navbar navbar-dark bg-primary navbar-toggleable-md'>
 <a class="navbar-brand" href="#me" style="color:white;">OJT</a>
     <div class='collapse navbar-collapse'>
@@ -20,12 +20,12 @@
                 <a class='nav-link' href='../adviser/index.php'  style="color:white;">Instructor</a>
             </li>
             <li class='nav-item'>
-                <a class='nav-link' href='../admin/index.php' style="color:white;">Admin</a>
+                <a class='nav-link' href='index.php' style="color:white;">Admin</a>
             </li>
         </ul>
     </div>
 </nav>
-</div>
+
   <div id="me" class="offset-4 mt-5" style="display:block; background-color:#e6f0bb;border-radius:50px;border:5px solid #405e01;height:55%;margin-right: 33.333333%;">
   <img src="../images/scis.png" style='width:200px;height:200px;float:left;padding:0;margin:0;'><h1 style="font-family: Sans-serif;font-size:5em;color:#405e01;">Log in</h1>
    <div class="modal-body">
@@ -79,7 +79,7 @@ session_start();
      echo"<script>window.alert('Invalid Username')</script>";
 
    }else if($password == $userpass){
-      $_SESSION['username'] = $username;
+      $_SESSION['username'] = ucfirst($username);
        header("location: adminpage.php");
 
   }else{

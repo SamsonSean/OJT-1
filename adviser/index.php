@@ -8,7 +8,7 @@
 </head>
 <body>
 <!--Navbar-->
-<div class="container" style="width:100%;">
+
 <nav class='navbar navbar-dark bg-primary navbar-toggleable-md'>
 <a class="navbar-brand" href="#me2" style="color:white;">OJT</a>
     <div class='collapse navbar-collapse'>
@@ -25,7 +25,7 @@
         </ul>
     </div>
 </nav>
-</div>
+
     <div id="#me2" class='offset-4 mt-5' style="display:block; background-color:#2c3756;border-radius:50px;border:5px solid #a6a4aa;height:55%;margin-right: 33.333333%">
     <img src="../images/scis.png" style='width:200px;height:200px;float:left;padding:0;margin:0;'><h1 style="font-family: Sans-serif;font-size:5em;color:#a6a4aa;">Log in</h1>
         <div class="modal-body">

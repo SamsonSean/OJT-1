@@ -8,7 +8,7 @@ $time = date('h:i:a');
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-	<link rel="stylesheet" type="text/css" href="../style/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../style/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="../style/bootsrap-grid.css">
   <link rel="stylesheet" type="text/css" href="../style/botstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../style/popup.css">
@@ -18,14 +18,16 @@ $time = date('h:i:a');
 </head>
 <body>
 <nav class='navbar navbar-dark bg-primary navbar-toggleable-md'>
-<a class="navbar-brand" style="color:white;">OJT 2017</a>
+<a class="navbar-brand" style="color:white;" href="student.php">OJT 2017</a>
     <div class='collapse navbar-collapse'>
-        <ul class='navbar-nav mr-auto'>
+        <ul class='navbar-nav mr-auto navbar-header'>
             <li class='nav-item'>
-                <a href="studentrecentlogs.php" style="color:white;">Recent Logs</a>
+                <a href="studentrecentlogs.php" style="color:white;">Recent Logs</a>        
             </li>
-            <li>
-                <a class='btn btn-sm btn-danger' href="logout.php" style="color:white;position:absolute;margin-left:85%;">Logout</a>
+          </ul>
+          <ul class="nav navbar-nav ">  
+            <li class='nav-item' >
+                <a class='btn btn-sm btn-danger pull-right' href="logout.php">Logout</a>
             </li>
         </ul>
     </div>
@@ -34,8 +36,10 @@ $time = date('h:i:a');
 <?php
 
 if (isset($_SESSION['idnumber'])) {
+		$name = mysqli_query($con,"Select * from students where idnumber = $_SESSION[idnumber]");
+		$row = mysqli_fetch_assoc($name);	
 	  echo "<div class='mt-5' style='display:block; background-color:white;border-top:5px solid #0275d8;border-bottom:5px solid #0275d8;'>";
-	  echo"<h1 style='color:#0275d8;'>Hi,  $_SESSION[idnumber] </h1> ";
+	  echo"<h1 style='color:#0275d8;'> $row[lastname], $row[firstname] </h1> ";
       echo"<h3 style='color:#0275d8;text-align:center;margin-bottom:20px;'>Remember to always Time in first and do not forget to put in your remarks for the day!</h3> ";
       echo "</div>";
 	
@@ -137,7 +141,7 @@ if(isset($_SESSION['remarkmess'])){
 			
 }
 else{
-	$_SESSION['button'] = "<button  id='timein' value='timein' class='btn btn-sm btn-success' type='button' onclick='log_student(this)' style='float:none;margin:1% 0% 1% 50%;'>Time in</button>";
+	echo "<button  id='timein' value='timein' class='btn btn-sm btn-success' type='button' onclick='log_student(this)' style='float:none;margin:1% 0% 1% 50%;'>Time in</button>";
 	echo"<table class='table' style='border-top:5px solid #0275d8;'>";
 		echo"<tr>";
 

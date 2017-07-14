@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 18, 2017 at 09:12 AM
+-- Generation Time: Jul 14, 2017 at 05:51 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -48,8 +48,17 @@ INSERT INTO `admin` (`adminid`, `username`, `password`) VALUES
 CREATE TABLE `adviser` (
   `adviser_id` varchar(45) NOT NULL,
   `lastname` varchar(45) NOT NULL,
-  `firstname` varchar(45) NOT NULL
+  `firstname` varchar(45) NOT NULL,
+  `password` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `adviser`
+--
+
+INSERT INTO `adviser` (`adviser_id`, `lastname`, `firstname`, `password`) VALUES
+('12', 'sample', 'sample', '12'),
+('123', 'Sample', 'Instructor', '123');
 
 -- --------------------------------------------------------
 
@@ -61,10 +70,19 @@ CREATE TABLE `logs` (
   `log_id` int(11) NOT NULL,
   `time_in` time DEFAULT NULL,
   `time_out` time DEFAULT NULL,
+  `hrs_rendered` float DEFAULT NULL,
   `remarks` varchar(200) DEFAULT NULL,
   `date` date NOT NULL,
   `id_number` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `logs`
+--
+
+INSERT INTO `logs` (`log_id`, `time_in`, `time_out`, `hrs_rendered`, `remarks`, `date`, `id_number`) VALUES
+(1, '09:17:00', '10:16:00', 0.983333, 'Power', '2017-07-13', '123'),
+(6, '10:40:00', '11:42:00', 1.03333, NULL, '2017-07-13', '123');
 
 -- --------------------------------------------------------
 
@@ -83,6 +101,13 @@ CREATE TABLE `students` (
   `day_schedule` varchar(45) NOT NULL,
   `adviser_id` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`idnumber`, `lastname`, `firstname`, `course`, `year`, `password`, `time_schedule`, `day_schedule`, `adviser_id`) VALUES
+('123', 'Samson', 'Sean', 'BSIT', 4, '123', '8:30-12:30', 'DAILY', '123');
 
 --
 -- Indexes for dumped tables
@@ -106,8 +131,8 @@ ALTER TABLE `adviser`
 --
 ALTER TABLE `logs`
   ADD PRIMARY KEY (`log_id`),
-  ADD UNIQUE KEY `id_number_UNIQUE` (`id_number`),
-  ADD KEY `id_number_idx` (`id_number`);
+  ADD KEY `id_number_idx` (`id_number`),
+  ADD KEY `id_number_UNIQUE` (`id_number`) USING BTREE;
 
 --
 -- Indexes for table `students`
@@ -129,7 +154,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --

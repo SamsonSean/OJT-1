@@ -15,21 +15,44 @@ session_start();
 	<title></title>
 </head>
 <body>
-<nav class='navbar navbar-dark bg-primary navbar-toggleable-md'>
-<a class="navbar-brand" style="color:white;">OJT 2017</a>
+<nav class='navbar navbar-inverse bg-primary navbar-toggleable-md'> 
+
     <div class='collapse navbar-collapse'>
         <ul class='navbar-nav mr-auto'>
+          <li class='nav-item'>
+            <a class="navbar-brand" style="color:white;" href='adminpage.php'>OJT 2017</a>
+          </li>
             <li class='nav-item'>
-                <a href="viewlogs.php" style="color:white;">ViewLogs</a>
+                <a class="navbar-brand" href="viewlogs.php" style="color:white;">ViewLogs</a>
             </li>
-            <li>
-                <a class='btn btn-sm btn-danger' href="logout.php" style="color:white;position:absolute;margin-left:85%;">Logout</a>
+          </ul>
+
+          <ul class='navbar-nav mr-auto'>
+                            <?php
+          if (isset($_SESSION['username'])) {
+           
+             echo"<li class='h2' >
+              Welcome!  $_SESSION[username]
+             </li> ";  
+            }else{
+          header("location: index.php");
+              }
+                     ?>
+          </ul>
+            <ul class="nav navbar-nav " >
+            <li class='nav-item'> 
+                <a class='btn btn-sm btn-danger pull-right ' href="logout.php" > Logout</a>
             </li>
+           </ul> 
+      
+          </ul>
         </ul>
     </div>
+
 </nav>
 
-<div class="offset-4 mt-5" style="margin-right: 33.333333%">
+<div class="container">
+<div class="offset-4 mt-5" >
 <button id='addstudent' class='btn btn-block btn-primary mt-3' onclick="hidestudentform()">Add Student</button>
 <div id="studentform" style="display:none;">
  <form class="form" action="addstudent.php" method="POST" enctype="multipart/form-data" autocomplete="off">
@@ -88,6 +111,7 @@ session_start();
 </form>
 </div>
 
+
 <button id='addinstructor' class='btn btn-block btn-primary mt-3' onclick="hideinstructorform()">Add Instructor</button>
 <div id="instructorform" style="display:none;">
 <form class="form" action="addInstructor.php" method="POST" enctype="multipart/form-data" autocomplete="off">
@@ -110,23 +134,13 @@ session_start();
 </form>
 </div>
 </div>
-<?php
+</div>
 
 
-if (isset($_SESSION['username'])) {
-	  echo "<div class='mt-5' style='display:block; background-color:white;border-top:5px solid #0275d8;border-bottom:5px solid #0275d8;margin-bottom:80px;'>";
-	  echo"<h1 style='color:#0275d8;'>Welcome!  $_SESSION[username] </h1> ";
-	  echo"<h3 style='color:#0275d8;text-align:center;margin-bottom:20px;'>Please choose what you would like to do.</h3> ";
-      echo "</div>";
-}else{
-	header("location: index.php");
-}
-?>
-
-<div class='mt-5' style='display:block; background-color:white;border-bottom:5px solid #0275d8;border-top:5px solid #0275d8;margin:50px 0px 50px 0px;text-align:center;padding:50px 0px 50px 0px;'>
+<div class='mt-5' >
 <h2 style='color:#0275d8;'>Filter By:</h2>
-<select id='value' onchange='search()' style='width:300px;height:40px;'>
-  <option value=''>-SELECT-</option>
+<select id='value' onchange='search()' >
+  <option value='1'>-SELECT-</option>
   <option value="0">ID number</option>
   <option value="1">Name</option>
   <option value="2">Course</option>
@@ -134,15 +148,14 @@ if (isset($_SESSION['username'])) {
   <option value="6">Adviser</option>
 </select>
 <input type="text" id="filter"  onkeyup="search()" 
-placeholder="Search.." title="Type in a name" style='width:300px;height:40px;'>
+placeholder="Search.." title="Type in a name" >
 </div>
+
 <?php
 $sql = mysqli_query($con,"SELECT * from students ");
-Echo "<h3 style='color:#0275d8;text-align:center;'>List of Students</h3>";
-
-
-echo "<a href=#delete  class='btn btn-sm btn-danger'role='button' style='float:none;margin:1% 0% 1% 85%;'>Delete All Students</a>";
-              echo" <div id=delete class='overlay'>
+Echo "<h3 style='color:#0275d8;'>List of Students</h3>";
+echo "<a href=#delete  class='btn btn-sm btn-danger'role='button' style='float:right;margin:1% 0% 1% 85%;'>Delete All Students</a>";
+            echo" <div id=delete class='overlay'>
                 <div class='popup'>             
                   <a class='close' href='#'>&times;</a>
                   <form action='delete.php' method='POST'>

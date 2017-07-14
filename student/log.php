@@ -36,8 +36,15 @@ if($timein){
 	 	$totaltime = mysqli_query($con,"SELECT * from logs where  $_SESSION[idnumber] and log_id = $_POST[timeout]");
 	 	$result = mysqli_fetch_assoc($totaltime);
 	 	if($result['time_out'] < '12' && $result['time_in'] < '12'){
+
 	 		$total = ((strtotime($result['time_out']) - strtotime($result['time_in']))/3600);
-	 		$hrsrendered = mysqli_query($con,"UPDATE logs set hrs_rendered = $total  where id_number =  $_SESSION[idnumber] and log_id =  $_POST[timeout]");
+	 		if($total >= 0.97 && $total <= 1){
+	 			$roundtotal = round($total);
+	 			$hrsrendered = mysqli_query($con,"UPDATE logs set hrs_rendered = $roundtotal where id_number =  $_SESSION[idnumber] and log_id =  $_POST[timeout]");
+	 		}else{
+	 			$hrsrendered = mysqli_query($con,"UPDATE logs set hrs_rendered = $total  where id_number =  $_SESSION[idnumber] and log_id =  $_POST[timeout]");
+	 		}
+	 		
 	 	}else
 {	 		$total = ((strtotime($result['time_out'] + 12) - strtotime($result['time_in']))/3600);
 	 		$hrsrendered = mysqli_query($con,"UPDATE logs set hrs_rendered = $total  where id_number =  $_SESSION[idnumber] and log_id =  $_POST[timeout]");

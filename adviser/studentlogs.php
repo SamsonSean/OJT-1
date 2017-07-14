@@ -34,7 +34,8 @@ if($logs->num_rows > '0'){
 				<th>Time out</th>
 				<th>hrs rendered</th>
         		<th>Remarks </th>
-				<th>Date</th>		
+				<th>Date</th>
+				<th>Action</th>		
 				</tr>	
 
 			";
@@ -48,6 +49,7 @@ if($logs->num_rows > '0'){
 				$remarks = $result['remarks'];
 				$date = $result['date'];
 				$hrs = $result['hrs_rendered'];
+				$logid = $result['log_id'];
 
 					echo "<tr>
 					          <td>$idnumber</td>
@@ -57,6 +59,10 @@ if($logs->num_rows > '0'){
 					          <td>$hrs</td>
                     		  <td>$remarks</td>
 					          <td>$date</td>
+					          <td>
+					          <form action='deletelogs.php' method='POST'>
+					           <button class='btn btn-sm btn-danger'  name='logs' id='logs' value='$logid'  >Delete</button>
+					          </form>
 					          </tr>";
 
 			}
@@ -79,7 +85,12 @@ if($logs->num_rows > '0'){
 		}	
 
 
-
+if(isset($_SESSION['dellog'])){
+	echo $_SESSION['dellog'];
+	unset($_SESSION['dellog']);
+}else{
+	echo "";
+}
 
 
 ?>
