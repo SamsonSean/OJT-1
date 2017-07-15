@@ -28,34 +28,32 @@ session_start();
           </ul>
 
           <ul class='navbar-nav mr-auto'>
-                            <?php
+<?php
           if (isset($_SESSION['username'])) {
            
-             echo"<li class='h2' >
+             echo"<li class='h2' style='color:white;'>
               Welcome!  $_SESSION[username]
              </li> ";  
             }else{
-          header("location: index.php");
-              }
-                     ?>
+              header("location: index.php");
+            }
+?>
           </ul>
             <ul class="nav navbar-nav " >
             <li class='nav-item'> 
                 <a class='btn btn-sm btn-danger pull-right ' href="logout.php" > Logout</a>
             </li>
            </ul> 
-      
-          </ul>
-        </ul>
     </div>
 
 </nav>
 
 <div class="container">
-<div class="offset-4 mt-5" >
+<div class="mt-5" >
 <button id='addstudent' class='btn btn-block btn-primary mt-3' onclick="hidestudentform()">Add Student</button>
 <div id="studentform" style="display:none;">
  <form class="form" action="addstudent.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+                <button id='addstudent' class='btn btn-block btn-danger mt-3' onclick="hidestudentform()">Cancel</button>
  				  <label>ID number: </label>
                 <input class="form-control" type="text" placeholder="idnumber" name="idnumber" required/>
                 <p class="break"></p>
@@ -115,6 +113,7 @@ session_start();
 <button id='addinstructor' class='btn btn-block btn-primary mt-3' onclick="hideinstructorform()">Add Instructor</button>
 <div id="instructorform" style="display:none;">
 <form class="form" action="addInstructor.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+                <button id='addinstructor' class='btn btn-block btn-danger mt-3' onclick="hideinstructorform()">Cancel</button>
                 <input class="form-control" type="text" placeholder="Instructor ID" name="insID" required/>
                 <p class="break"></p>
                 <input class="form-control" type="text" placeholder="lastname" name="lname" required/>
@@ -137,7 +136,7 @@ session_start();
 </div>
 
 
-<div class='mt-5' >
+<div style='margin-top:200px;text-align:center;border-top:5px solid #0275d8;border-bottom:5px solid #0275d8;padding:20px;'>
 <h2 style='color:#0275d8;'>Filter By:</h2>
 <select id='value' onchange='search()' >
   <option value='1'>-SELECT-</option>
@@ -153,7 +152,7 @@ placeholder="Search.." title="Type in a name" >
 
 <?php
 $sql = mysqli_query($con,"SELECT * from students ");
-Echo "<h3 style='color:#0275d8;'>List of Students</h3>";
+Echo "<h3 class='mt-5' style='color:#0275d8;'>List of Students</h3>";
 echo "<a href=#delete  class='btn btn-sm btn-danger'role='button' style='float:right;margin:1% 0% 1% 85%;'>Delete All Students</a>";
             echo" <div id=delete class='overlay'>
                 <div class='popup'>             

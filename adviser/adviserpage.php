@@ -2,10 +2,6 @@
 require("../connect.php");
 session_start();
 $id = explode(",",$_SESSION['instructor']);
-echo "Hi ".$id[0].",".$id[1];
-echo"<br>";
-if(isset($_SESSION['instructor'])){
-
 
 ?>
 <html>
@@ -17,11 +13,45 @@ if(isset($_SESSION['instructor'])){
 	<title></title>
 </head>
 <body>
-	<a href="studentlogs.php">View logs of Students this day</a>
+<nav class='navbar navbar-inverse bg-primary navbar-toggleable-md'> 
+
+    <div class='collapse navbar-collapse'>
+        <ul class='navbar-nav mr-auto'>
+          <li class='nav-item'>
+            <a class="navbar-brand" style="color:white;" href='adviserpage.php'>OJT 2017</a>
+          </li>
+            <li class='nav-item'>
+                <a class="navbar-brand" href="studentlogs.php" style="color:white;">View Logs</a>
+            </li>
+          </ul>
+
+          <ul class='navbar-nav mr-auto'>
+<?php
+        echo "<li><h2 style='color:white;'>Welcome ".$id[0].",".$id[1];
+        echo "</h2>";
+        echo "</li>";
+        echo"<br>";
+        if(isset($_SESSION['instructor'])){
+
+
+?>
+          </ul>
+        
+        
+          <ul class='navbar-nav mr-auto'>
+          </ul>
+            <ul class="nav navbar-nav " >
+            <li class='nav-item'> 
+                <a class='btn btn-sm btn-danger pull-right ' href="logout.php" > Logout</a>
+            </li>
+           </ul> 
+    </div>
+
+</nav>
 <?php
 
 
-echo "<h1> LIST OF STUDENTS</h1>";
+echo "<h3 class='mt-5 mb-5' style='color:#0275d8;'>List of Students</h2>";
 $logs = mysqli_query($con,"SELECT * FROM `students`  where adviser_id = $id[2]");
 
 if($logs->num_rows > '0'){

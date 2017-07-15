@@ -15,10 +15,42 @@ $time = date('h:i:a');
 	<title></title>
 </head>
 <body>
-	<a href="adviserpage.php">Home</a>
-	<br>
-	<a href='studentlogs.php'>Log today</a>
+<nav class='navbar navbar-inverse bg-primary navbar-toggleable-md'> 
+
+    <div class='collapse navbar-collapse'>
+        <ul class='navbar-nav mr-auto'>
+          <li class='nav-item'>
+            <a class="navbar-brand" style="color:white;" href='adviserpage.php'>OJT 2017</a>
+          </li>
+            <li class='nav-item'>
+                <a class="navbar-brand" href="studentlogs.php" style="color:white;">Student Logs</a>
+            </li>
+            <li class='nav-item'>
+                <a class="navbar-brand" href="adviserpage.php" style="color:white;">Home</a>
+            </li>
+          </ul>       
+          <ul class='navbar-nav mr-auto'>
+          </ul>
+            <ul class="nav navbar-nav " >
+            <li class='nav-item'> 
+                <a class='btn btn-sm btn-danger pull-right ' href="logout.php" > Logout</a>
+            </li>
+           </ul> 
+    </div>
+
+</nav>
 <?php
+    
+echo "<div class='mb-5 mt-5 ml-3'>";
+$sql = mysqli_query($con,"Select * from students inner join logs on students.idnumber = logs.id_number where date = '$date' order by logs.date ");
+echo "<br>";
+echo "<h3 style='color:#0275d8;'>The date is: ".$date;
+echo "</h3>";
+echo "<br>";
+echo "<h3 style='color:#0275d8;'>The time is: ".$time;
+echo "</h3>";
+echo "</div>";
+    
 $logs = mysqli_query($con,"SELECT * FROM `students` inner join logs on students.idnumber = logs.id_number
 							 where adviser_id = $id[2] and date != '$date' order by logs.date ");
 

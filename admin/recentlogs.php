@@ -8,14 +8,35 @@
   <link rel="stylesheet" type="text/css" href="../style/popup.css">
 </head>
 <body>
-<p><a href="adminpage.php" >Home</a></p>
-<p><a href="viewlogs.php" >View Logs Today</a></p>
+<nav class='navbar navbar-inverse bg-primary navbar-toggleable-md'> 
+
+    <div class='collapse navbar-collapse'>
+        <ul class='navbar-nav mr-auto'>
+          <li class='nav-item'>
+            <a class="navbar-brand" style="color:white;" href='adminpage.php'>OJT 2017</a>
+          </li>
+            <li class='nav-item'>
+                <a class="navbar-brand" href="viewlogs.php" style="color:white;">View Logs</a>
+            </li>
+            <li class='nav-item'>
+                <a class="navbar-brand" href="index.php" style="color:white;">Home</a>
+            </li>
+          </ul>
+            <ul class="nav navbar-nav " >
+            <li class='nav-item'> 
+                <a class='btn btn-sm btn-danger pull-right ' href="logout.php" > Logout</a>
+            </li>
+           </ul> 
+    </div>
+</nav>
 <?php
 require("../connect.php");
 session_start();
+echo "<div class='mt-5 mb-5 ml-3'>";
 if (isset($_SESSION['username'])) {
 	
-	  echo"Hi! ". $_SESSION['username'];
+	  echo"<h3 style='color:#0275d8;'>Hi! ". $_SESSION['username'];
+      echo"</h3>";
 	
 }else{
 	header("location: index.php");
@@ -25,9 +46,12 @@ $date = date('Y-m-d');
 $time = date('h:i:a');
 $sql = mysqli_query($con,"Select * from students inner join logs on students.idnumber = logs.id_number where logs.date != '$date' order by logs.date ");
 echo "<br>";
-echo "The date is ".$date;
+echo "<h3 style='color:#0275d8;'>The date is: ".$date;
+echo "</h3>";
 echo "<br>";
-echo "The time is ".$time;
+echo "<h3 style='color:#0275d8;'>The time is: ".$time;
+echo "</h3>";
+echo "</div>";
 
 
 if($sql->num_rows > '0'){
